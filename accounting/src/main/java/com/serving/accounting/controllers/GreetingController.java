@@ -26,10 +26,10 @@ public class GreetingController {
 	}
 	
 	@PatchMapping("/accounting")
-	public void checking () {
+	public void checking () { //проверка к каким данным имеет доступ пользователь
 		UserInfo user = new UserInfo();
-		
 	}
+	
 	@GetMapping("/accounting/")
 	public Account accounting() {
 		Account account = new Account();
