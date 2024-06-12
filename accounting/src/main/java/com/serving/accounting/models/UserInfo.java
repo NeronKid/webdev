@@ -20,18 +20,24 @@ import lombok.Setter;
 @Entity(name = "users")
 public class UserInfo implements UserDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
 	private Long id;
+	
+	@Column(name = "password", nullable = false)
 	private String username;
+	
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
+	
+	@Column(name = "password", nullable = false)
 	private String password;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "users_roles",
-			joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
-	)
-	private List<Role> roles = new ArrayList<>();
+	
+	@Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
@@ -53,3 +59,5 @@ public class UserInfo implements UserDetails{
 		return true;
 	}
 }
+
+
