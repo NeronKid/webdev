@@ -2,22 +2,21 @@ package com.serving.accounting.service.impl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.serving.accounting.models.UserInfo;
 import com.serving.accounting.service.JwtService;
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+import javax.crypto.SecretKey;
 
 @Service
 public class JwtServiceImpl implements JwtService {
@@ -86,7 +85,7 @@ public class JwtServiceImpl implements JwtService {
         return Jwts.builder().claims(extraClaims).subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24))
-                .signWith(getSigningKey(), Jwts.SIG.HS256).compact();
+                .signWith(getSigningKey(), Jwts.SIG.NONE).compact();
     }
 
     /**
@@ -116,8 +115,8 @@ public class JwtServiceImpl implements JwtService {
      * @return данные
      */
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(getSigningKey()).build().parseClaimsJws(token)
-                .getBody();
+        return Jwts.parser().verifyWith((SecretKey) getSigningKey()).build().parseSignedClaims(token)
+                .getPayload();
     }
 
     /**
