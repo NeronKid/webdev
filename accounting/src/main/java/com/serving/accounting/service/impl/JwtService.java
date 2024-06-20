@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.serving.accounting.models.UserInfo;
-import com.serving.accounting.service.JwtService;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import java.util.function.Function;
 import javax.crypto.SecretKey;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtService {
 	@Value("${token.signing.key}")
     private String jwtSigningKey;
 

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.serving.accounting.service.UserService;
+import com.serving.accounting.service.impl.UserService;
+
 
 @RestController
 @RequestMapping("/example")

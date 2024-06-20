@@ -5,9 +5,7 @@ import com.serving.accounting.models.Role;
 import com.serving.accounting.models.SignInRequest;
 import com.serving.accounting.models.SignUpRequest;
 import com.serving.accounting.models.UserInfo;
-import com.serving.accounting.service.AuthenticationService;
-import com.serving.accounting.service.JwtService;
-import com.serving.accounting.service.UserService;
+
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService{
+public class AuthenticationService{
 	private final UserService userService;
 	 private final JwtService jwtService;
 	    private final PasswordEncoder passwordEncoder;

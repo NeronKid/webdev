@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.serving.accounting.models.JwtAuthenticationResponse;
 import com.serving.accounting.models.SignInRequest;
 import com.serving.accounting.models.SignUpRequest;
-import com.serving.accounting.service.AuthenticationService;
+import com.serving.accounting.service.impl.AuthenticationService;
 
 
 @RestController

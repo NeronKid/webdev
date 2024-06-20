@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import com.serving.accounting.models.Role;
 import com.serving.accounting.models.UserInfo;
 import com.serving.accounting.repos.UserRepository;
-import com.serving.accounting.service.UserService;
 
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserService{
 	 private final UserRepository repository;
 
 	    /**

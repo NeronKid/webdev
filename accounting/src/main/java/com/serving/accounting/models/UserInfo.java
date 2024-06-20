@@ -35,7 +35,7 @@ public class UserInfo implements UserDetails{
 	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
 	private Long id;
 	
-	@Column(name = "password", nullable = false)
+	@Column(name = "username", nullable = false)
 	private String username;
 	
 	@Column(name = "email", unique = true, nullable = false)

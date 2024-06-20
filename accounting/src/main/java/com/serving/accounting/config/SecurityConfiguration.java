@@ -24,7 +24,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
-import com.serving.accounting.service.UserService;
+import com.serving.accounting.service.impl.UserService;
 
 import lombok.RequiredArgsConstructor;
 
