@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.serving.accounting.models.Role;
 import com.serving.accounting.models.UserInfo;
 import com.serving.accounting.repos.UserRepository;
