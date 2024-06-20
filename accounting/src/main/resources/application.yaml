@@ -8,14 +8,14 @@
 #      ddl-auto: create
 spring:
   application:
-    name: security-security
+    name: postgres
   datasource:
     url: jdbc:postgresql://localhost:5433/accounting
     username: postgres
     password: NeronKid
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
