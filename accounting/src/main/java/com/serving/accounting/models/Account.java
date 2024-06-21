@@ -33,7 +33,7 @@ public class Account {
 	
 	@ManyToOne
 	@JoinColumn(name = "created_by", nullable = false)
-	private UserInfo createdBy;
+	private User createdBy;
 	
 	@CreationTimestamp
     private LocalDateTime createdOn;

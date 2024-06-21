@@ -1,12 +1,14 @@
 package com.serving.accounting.service.impl;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.serving.accounting.models.Role;
-import com.serving.accounting.models.UserInfo;
+import com.serving.accounting.models.User;
 import com.serving.accounting.repos.UserRepository;
 
 
@@ -20,7 +22,7 @@ public class UserService{
 	     *
 	     * @return сохраненный пользователь
 	     */
-	    public UserInfo save(UserInfo user) {
+	    public User save(User user) {
 	        return repository.save(user);
 	    }
 	    
@@ -29,7 +31,7 @@ public class UserService{
 	     *
 	     * @return созданный пользователь
 	     */
-	    public UserInfo create(UserInfo user) {
+	    public User create(User user) {
 	        if (repository.existsByUsername(user.getUsername())) {
 	            // Заменить на свои исключения
 	            throw new RuntimeException("Пользователь с таким именем уже существует");
@@ -47,7 +49,7 @@ public class UserService{
 	     *
 	     * @return пользователь
 	     */
-	    public UserInfo getByUsername(String username) {
+	    public User getByUsername(String username) {
 	        return repository.findByUsername(username)
 	                .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
 
@@ -69,7 +71,7 @@ public class UserService{
 	     *
 	     * @return текущий пользователь
 	     */
-	    public UserInfo getCurrentUser() {
+	    public User getCurrentUser() {
 	        // Получение имени пользователя из контекста Spring Security
 	        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 	        return getByUsername(username);

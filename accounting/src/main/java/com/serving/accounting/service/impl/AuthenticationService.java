@@ -4,7 +4,7 @@ import com.serving.accounting.models.JwtAuthenticationResponse;
 import com.serving.accounting.models.Role;
 import com.serving.accounting.models.SignInRequest;
 import com.serving.accounting.models.SignUpRequest;
-import com.serving.accounting.models.UserInfo;
+import com.serving.accounting.models.User;
 
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class AuthenticationService{
 	     */
 	    public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-	        var user = UserInfo.builder()
+	        var user = User.builder()
 	                .username(request.getUsername())
 	                .email(request.getEmail())
 	                .password(passwordEncoder.encode(request.getPassword()))

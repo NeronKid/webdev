@@ -79,6 +79,7 @@ public class SecurityConfiguration {
             throws Exception {
         return config.getAuthenticationManager();
     }
+   /*
     @Bean
 	public UserDetailsService userDetailsService() {
 		UserDetails user = User.withDefaultPasswordEncoder()
@@ -88,4 +89,5 @@ public class SecurityConfiguration {
 				.build();
 		return new InMemoryUserDetailsManager(user);
 	}
+	*/
 }
