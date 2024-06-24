@@ -22,8 +22,6 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "Аутентификация")
 public class AuthController {
 	
-	private final AuthService authService;
-	
 	/*
 	@Operation(summary = "Регистрация пользователя")
     @PostMapping("/register")
