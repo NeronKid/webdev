@@ -1,37 +1,47 @@
 package com.serving.accounting.controllers;
 
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.serving.accounting.models.JwtAuthenticationResponse;
-import com.serving.accounting.models.SignInRequest;
-import com.serving.accounting.models.SignUpRequest;
-import com.serving.accounting.service.impl.AuthenticationService;
+import com.serving.accounting.service.AuthService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @Tag(name = "Аутентификация")
 public class AuthController {
-    private final AuthenticationService authenticationService;
-
-    @Operation(summary = "Регистрация пользователя")
-    @PostMapping("/sign-up")
-    public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request) {
-        return authenticationService.signUp(request);
-    }
-
+	
+	private final AuthService authService;
+	
+	/*
+	@Operation(summary = "Регистрация пользователя")
+    @PostMapping("/register")
+	public ResponseEntity<Void> register( @RequestBody UserDto userDto) {
+		 authService.register(userDto);
+		 return ResponseEntity.ok().build();
+	}
+	*/
+	
     @Operation(summary = "Авторизация пользователя")
-    @PostMapping("/sign-in")
-    public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request) {
-        return authenticationService.signIn(request);
+    @PostMapping("/login")
+    public UserDetailsService signIn() {
+    	UserDetails user =
+    			User.withDefaultPasswordEncoder()
+    				.username("user")
+    				.password("password")
+    				.roles("USER")
+    				.build();
+        return new InMemoryUserDetailsManager(user);
     }
 }
