@@ -13,6 +13,7 @@ public class GreetingController {
 		return ResponseEntity.ok("Hello");
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/getnum")
 	public ResponseEntity<String> getNum(){
 		return ResponseEntity.ok("100");
