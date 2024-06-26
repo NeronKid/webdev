@@ -18,4 +18,5 @@ public class GreetingController {
 		return ResponseEntity.ok("100");
 	}
 	
+	
 }
